@@ -1,5 +1,4 @@
 #include <catch2/catch_test_macros.hpp>
-
 #include "wol/mac_address.hpp"
 
 TEST_CASE("MacAddress parses colon-separated format") {
@@ -17,6 +16,13 @@ TEST_CASE("MacAddress parses colon-separated format") {
 
 TEST_CASE("MacAddress parses dash-separated format") {
     auto mac = MacAddress::from_string("aa-bb-cc-dd-ee-ff");
+    REQUIRE(mac.has_value());
+
+    REQUIRE(mac->bytes()[0] == 0xAA);
+}
+
+TEST_CASE("MacAddress parses dot-separated format") {
+    auto mac = MacAddress::from_string("aabb.ccdd.eeff");
     REQUIRE(mac.has_value());
 
     REQUIRE(mac->bytes()[0] == 0xAA);
