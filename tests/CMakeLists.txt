@@ -10,6 +10,7 @@ FetchContent_MakeAvailable(Catch2)
 
 add_executable(wol-tests
     test_mac_address.cpp
+    test_magic_packet.cpp
 )
 
 target_link_libraries(wol-tests
